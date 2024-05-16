@@ -64,7 +64,10 @@ async function showForecast(url) {
 
             }
 
-
+            // Link zum Datendownload
+            content += `
+<p><a href="${url}" target="met.no">Daten downloaden</a></p>
+`;
             L.popup(latlng, {
                 content: content
             }).openOn(themaLayer.forecast);
