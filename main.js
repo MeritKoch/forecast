@@ -69,14 +69,10 @@ async function showForecast(url) {
             L.popup(latlng, {
                 content: content
             }).openOn(themaLayer.forecast);
-
         }
-
     }).addTo(themaLayer.forecast);
-
 }
 //showForecast("https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=47.267222&lon=11.392778");
-
 //auf Kartenklick reagieren
 map.on("click", function (evt) {
     console.log(evt);
@@ -88,3 +84,12 @@ map.on("click", function (evt) {
 map.fire("click", {
     latlng: ibk
 });
+
+//Windkarte
+async function loadWind(url) {
+    const response = await fetch(url);
+    const jsondata = await response.json();
+    console.log(jsondata);
+}
+loadWind("https://geographie.uibk.ac.at/data/ecmwf/data/wind-10u-10v-europe.json");
+
