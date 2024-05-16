@@ -57,9 +57,9 @@ async function showForecast(url) {
             for (let i = 0; i <= 24; i += 3) {
                 let symbol = feature.properties.timeseries[i].data.next_1_hours.summary.symbol_code;
                 let time = new Date(feature.properties.timeseries[i].time);
-                console.log(time);
+                //console.log(time);
                 content += `<img src="icons/${symbol}.svg" alt="${symbol}" style="width:32px" title="${time.toLocaleString()}">`
-                console.log(i, symbol);
+                //console.log(i, symbol);
             }
 
             // Link zum Datendownload
@@ -76,3 +76,10 @@ async function showForecast(url) {
 
 }
 showForecast("https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=47.267222&lon=11.392778");
+
+//auf Kartenklick reagieren
+map.on("click", function (evt) {
+    console.log(evt);
+    console.log(evt.latlng.lat, evt.latlng.lng);
+    showForecast(`https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${evt.latlng.lat}&lon=${evt.latlng.lng}`)
+});
